@@ -1,0 +1,16 @@
+--------------- New Run ---------------
+swag: [90.96]
+wbayavg: [91.98]
+bayavg: [91.65]
+wfedavg: 91.93
+wedavg: 91.58
+client 0: 84.07
+client 1: 87.41
+client 2: 87.75
+client 3: 89.57
+client 4: 90.21
+client 5: 90.09
+client 6: 90.77
+client 7: 90.29
+client 8: 90.69
+client 9: 90.8

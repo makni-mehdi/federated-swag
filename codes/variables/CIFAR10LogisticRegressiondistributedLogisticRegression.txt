@@ -1,0 +1,16 @@
+--------------- New Run ---------------
+swag: [36.64]
+wbayavg: [40.51]
+bayavg: [39.99]
+wfedavg: 40.53
+fedavg: 40.09
+client 0: 23.32
+client 1: 28.89
+client 2: 26.2
+client 3: 29.24
+client 4: 31.23
+client 5: 30.97
+client 6: 33.55
+client 7: 32.3
+client 8: 33.35
+client 9: 31.4
