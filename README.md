@@ -6,9 +6,11 @@ This repository contains a PyTorch code for the experiments conducted in my Bach
 
 Bachelor Thesis Report at [École Polytechnique](https://www.polytechnique.edu/en)  and the [Lagrange Mathematics and Computing Research Center](https://www.huawei.com/fr/news/fr/2020/centre-lagrange).
 
-Advisors: [Mérouane Debbah](https://en.wikipedia.org/wiki/M%C3%A9rouane_Debbah) (Director of research at the Lagrange Mathematics and Computing Research Center) and [Éric Moulines](https://en.wikipedia.org/wiki/%C3%89ric_Moulines) (French Academy of Science 2017)
+Advisors: [Mérouane Debbah](https://en.wikipedia.org/wiki/M%C3%A9rouane_Debbah) (Director of research at the Lagrange Mathematics and Computing Research Center) and [Éric Moulines](https://en.wikipedia.org/wiki/%C3%89ric_Moulines) (French Academy of Science 2017).
 
-Much of the internship was also supervised by [Vincent Plassier](https://www.linkedin.com/in/vincent-plassier-179161172/?originalSubdomain=fr) (PhD student at École Polytechnique and Lagrange Mathematics and Computing Research Center) who also contributed to the code and guided the research project.
+Much of the internship was also supervised by [Vincent Plassier](https://www.linkedin.com/in/vincent-plassier-179161172/?originalSubdomain=fr) (PhD student at École Polytechnique and Lagrange Mathematics and Computing Research Center) who was an awesome tutor, provided code for technical sampling algorithms and guided the research project.
+
+Special thanks to everyone mentioned above and the team at the Lagrange Center :)
 
 ## Abstract
 
