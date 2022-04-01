@@ -38,8 +38,8 @@ We start by building a toy example and try to visualize and quantify to what ext
 Our experiments have shown that FL-SWAG actually performed well on classification and the last consensus step makes sense. At this point, we have already obtained a model that respects Federated Learning constraints and that achieves state-of-the-art accuracy even though it aggregates weights from models whose datasets are statistically heterogeneous and imbalanced. Now, we want to validate their uncertainty quantification performance. For this reason, we compute their calibration scores and benchmark them against well-known models in the field.
 
 <p align="center">
-<img src="./images/acc_conf-CIFAR10ResNet18-1.png" width="48.2%"/>
-<img src="./images/cal_curve-CIFAR10ResNet18-1.png" width="50%"/>
+<img src="./images/acc_conf-CIFAR10ResNet18-1.png" width="49.5%"/>
+<img src="./images/cal_curve-CIFAR10ResNet18-1.png" width="49.6%"/>
 </p>
 
 ## Conclusion 
