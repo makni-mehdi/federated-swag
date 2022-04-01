@@ -22,7 +22,7 @@ The results of the experiments are performed on MNIST, FashionMNIST and CIFAR 10
 We start by building a toy example and try to visualize and quantify to what extent can the SWAG algorithm be close to Hamiltonian Monte Carlo method which samples asymptotically from the true posterior distribution. The high-dimensional space where weights lie is projected into a plance obtained thanks to PCA (Principal Compenent Analysis).
 
 
-![Alt text](/blob/main/codes/Visualizing%20posterior%20distribution%20in%20PCA%20subspace/hmc_sample_2d.pdf?raw=true "HMC samples")
+![Alt text](codes/Visualizing%20posterior%20distribution%20in%20PCA%20subspace/hmc_sample_2d.pdf?raw=true "HMC samples")
 
 ![Alt text](/blob/main/codes/Visualizing%20posterior%20distribution%20in%20PCA%20subspace/swag_samples_2d.pdf?raw=true "SWAG samples")
 
