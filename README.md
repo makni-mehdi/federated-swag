@@ -31,6 +31,6 @@ We start by building a toy example and try to visualize and quantify to what ext
 
 ## FL-SWAG Comparison to SGLD and pSGLD on CIFAR 10
 
-![Alt text](/blob/main/codes/Visualizing%20posterior%20distribution%20in%20PCA%20subspace/posterior_distributions_subspace.pdf?raw=true "Posterior Distributions")
+![Alt text](/images/acc_conf-CIFAR10ResNet18.pdf "accuracy - confidence")
 
-![Alt text](/blob/main/codes/Visualizing%20posterior%20distribution%20in%20PCA%20subspace/posterior_distributions_subspace.pdf?raw=true "Posterior Distributions")
+![Alt text](/images/cal_curve-CIFAR10ResNet18.pdf "accuracy - confidence | confidence greater than Tau")
