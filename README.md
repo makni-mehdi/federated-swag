@@ -1,127 +1,36 @@
-# Subspace Inference for Bayesian Deep Learning
+# Uncertainty Quantification in Federated Learning
 
-This repository contains a PyTorch code for the subspace inference method introduced in the paper
+This repository contains a PyTorch code for the experiments conducted in my Bachelor Thesis.
 
-[Subspace Inference for Bayesian Deep Learning](https://arxiv.org/abs/1907.07504)
+[Deriving FL-SWAG for the sake of calibration and privacy protection](https://github.com/makni-mehdi/federated-swag/blob/main/Bachelor%20Thesis%20Report.pdf)
 
-by [Pavel Izmailov](https://izmailovpavel.github.io/), [Wesley Maddox](https://wjmaddox.github.io/), [Polina Kirichenko](https://github.com/PolinaKirichenko), [Timur Garipov](https://github.com/timgaripov), [Dmitry Vetrov](https://bayesgroup.ru/), and [Andrew Gordon Wilson](https://people.orie.cornell.edu/andrew/)
+Bachelor Thesis Report at [École Polytechnique](https://www.polytechnique.edu/en)  and the [Lagrange Mathematics and Computing Research Center](https://www.huawei.com/fr/news/fr/2020/centre-lagrange).
 
-## Introduction
+Advisors: [Mérouane Debbah](https://en.wikipedia.org/wiki/M%C3%A9rouane_Debbah) (Director of research at the Lagrange Mathematics and Computing Research Center) and [Éric Moulines](https://en.wikipedia.org/wiki/%C3%89ric_Moulines) (French Academy of Science 2017)
 
-For deep neural network models, exact Bayesian inference is intractable, and existing approximate inference methods suffer from many limitations, largely due to the high dimensionality of the parameter space.
-In subspace inference we address this problem by performing inference in low-dimensional subspaces of the parameter space. 
-In the paper, we show how to construct very low-dimensional subspaces that can contain diverse high performing models. 
-Bayesian inference within such subspaces is much easier than in the original parameter space and leads to strong results.  
+Much of the internship was also supervised by [Vincent Plassier](https://www.linkedin.com/in/vincent-plassier-179161172/?originalSubdomain=fr) (PhD student at École Polytechnique and Lagrange Mathematics and Computing Research Center) who also contributed to the code and guided the research project.
 
-At a high level, our method proceeds as follows: 
-1. We construct a low dimensional subspace of the parameter space
-2. We approximate the posterior distribution over the parameters in this subspace
-3. We sample from the approximate posterior in the subspace and perform Bayesian model averaging.
+## Abstract
 
-<!--
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/14368801/60686210-49921100-9e5c-11e9-8625-532951f69c1f.png" height=275>
-  <img src="https://user-images.githubusercontent.com/14368801/60686208-49921100-9e5c-11e9-9968-f7d9cfdaf8a0.png" height=275>
-</p>
--->
+In this Bachelor Thesis report, we study one-shot methods whose objective is to obtain a well-calibrated model that results from a unique consensus step of the parameters of models trained in a federated fashion. To this end, we introduce uncertainty quantification and the calibration scores known in the field as well as the constraints of the Federated Learning setting. 
+We motivate the problem of finding well-calibrated models that respect privacy issues encountered in Federated Learning and explore the performance of SWAG, a rising star in uncertainty quantification, by comparison to the results of a ground-truth Hamiltonian Monte Carlo sampling method which is prohibitively expensive in the context of Deep Learning. We finally derive a highly-efficient, SWAG-inspired, last-layer model that trains in a distributed way to allow clients to collaborate and solve a machine learning task without data sharing, while ensuring the calibration of their outputs. 
+The results of the experiments are performed on MNIST, FashionMNIST and CIFAR 10 datasets and benchmarked against leading models in uncertainty quantification like SGLD and pSGLD.
 
-<p align="center">
-  <img src=https://user-images.githubusercontent.com/14368801/60688558-ccba6380-9e6a-11e9-852e-2df28bed04db.gif height=300>
-</p>
-  
-<!--
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/14368801/60686209-49921100-9e5c-11e9-9b74-a98497dfc7d8.png" height=275>
-  <img src="https://user-images.githubusercontent.com/14368801/60686207-49921100-9e5c-11e9-8ed7-e5c684597edb.png" height=275>
-</p>
--->
-  
-For example, we can achieve state-of-the-art results for a WideResNet with 36 million parameters by performing approximate inference in only a 5-dimensional subspace.
 
-If you use our work, please cite the following paper:
-```
-@article{izmailov_subspace_2019,
-  title={Subspace Inference for Bayesian Deep Learning},
-  author={Izmailov, Pavel and Maddox, Wesley and Kirichenko, Polina and Garipov, Timur and Vetrov, Dmitry and Wilson, Andrew Gordon},
-  journal={Uncertainty in Artificial Intelligence (UAI)},
-  year={2019}
-}
-```
+## SWAG - HMC Toyish Comparison
 
-## Installation
+We start by building a toy example and try to visualize and quantify to what extent can the SWAG algorithm be close to Hamiltonian Monte Carlo method which samples asymptotically from the true posterior distribution. The high-dimensional space where weights lie is projected into a plance obtained thanks to PCA (Principal Compenent Analysis).
 
-You can install the package by running the following command
-```bash
-python setup.py
-```
 
-## Usage
+![Alt text](/blob/main/codes/Visualizing%20posterior%20distribution%20in%20PCA%20subspace/hmc_sample_2d.pdf?raw=true "HMC samples")
 
-We provide the scripts and example commands to reproduce the experiments from the paper.
+![Alt text](/blob/main/codes/Visualizing%20posterior%20distribution%20in%20PCA%20subspace/swag_samples_2d.pdf?raw=true "SWAG samples")
 
-### Subspace Construction and Inference Procedures
+![Alt text](/blob/main/codes/Visualizing%20posterior%20distribution%20in%20PCA%20subspace/posterior_distributions_subspace.pdf?raw=true "Posterior Distributions")
 
-In the paper we show how to construct random, PCA, and mode-connected subspaces, over which we can perform Bayesian inference. The PCA subspace will often be most practical, in terms of a runtime-accuracy trade-off. Once the subspace is constructed, we consider various approaches to inference within the subspace, such as MCMC and variational methods. The following examples show how to call subspace inference with your choice of subspace and inference procedure.
 
-### Visualizing Regression Uncertainty
+## FL-SWAG Comparison to SGLD and pSGLD on CIFAR 10
 
-We provide a [jupyter notebook](experiments/synthetic_regression/visualizing_uncertainty.ipynb) in which we show how to apply subspace inference to a regression problem, using different types of subspaces and approximate inference methods.
+![Alt text](/blob/main/codes/Visualizing%20posterior%20distribution%20in%20PCA%20subspace/posterior_distributions_subspace.pdf?raw=true "Posterior Distributions")
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/14368801/60686210-49921100-9e5c-11e9-8625-532951f69c1f.png" height=150>
-  <img src="https://user-images.githubusercontent.com/14368801/60686208-49921100-9e5c-11e9-9968-f7d9cfdaf8a0.png" height=150>
-  <img src="https://user-images.githubusercontent.com/14368801/60686209-49921100-9e5c-11e9-9b74-a98497dfc7d8.png" height=150>
-  <img src="https://user-images.githubusercontent.com/14368801/60686207-49921100-9e5c-11e9-8ed7-e5c684597edb.png" height=150>
-</p>
-
-### Image Classification
-
-The folder [`experiments/cifar_exps`](experiments/cifar_exps) contains the implementation of subspace inference for CIFAR-10 and CIFAR-100 datasets. 
-To run subspace inference, you need to first pre-train the subspace, and then either run variational inference (VI) or elliptical slice sampling (ESS) in the subspace.
-For example, you can pre-train a PCA subspace for a VGG-16 by running
-```
-python3 experiments/cifar_exps/swag.py --data_path=data --epochs=300 --dataset=CIFAR100 --save_freq=300 \
-      --model=VGG16 --lr_init=0.05 --wd=5e-4 --swag --swag_start=161 --swag_lr=0.01 --cov_mat --use_test \
-      --dir=ckpts/vgg16_run1
-```
-Then, you can run ESS in the constructed subspace using the following command
-```
-python3 experiments/cifar_exps/subspace_ess.py --dir=ckpts/vgg16_run1/ess/ --dataset=CIFAR100 \
-      --data_path=~/datasets/ --model=VGG16 --use_test --rank=5 --checkpoint=ckpts/vgg16_run1/swag-300.pt \
-      --temperature=5000 --prior_std=2
-```
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/14368801/60690876-db5f4580-9e7f-11e9-8d6f-0e7fb8f5c11f.png" height=200>
-  <img src="https://user-images.githubusercontent.com/14368801/60690904-0b0e4d80-9e80-11e9-8713-29bd3b6b1397.png" height=200>
-  <img src="https://user-images.githubusercontent.com/14368801/60690903-0b0e4d80-9e80-11e9-9357-aff77306f4fc.png" height=200>
-</p>
-
-Please refer to the [`README`](experiments/cifar_exps/README.md) for more detailed information.
-
-### UCI Regression
-
-The folder [`experiments/uci_exps`](experiments/uci_exps) contains implementations of the subspace inference procedure 
-for UCI regression problems.
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/14368801/60690931-6b04f400-9e80-11e9-995b-d04ec9feaa9b.png" height=150>
-</p>
-
-Please refer to the [`README`](experiments/uci_exps/README.md) for more detailed information.
-
-## References for Code Base
-
-Repositories: 
-  - Stochastic weight averaging (SWA): [PyTorch repo](https://github.com/timgaripov/swa/). Many of the base methods and model definitions are built off of this repo.
-  - SWA-Gaussian (SWAG): [PyTorch repo](https://github.com/wjmaddox/swa_gaussian).
-  our codebase here is based the SWAG repo; SWAG repo also contains the implementations of various baselines fof 
-  image classification as well as the experiments on Hessian eigenvalues.
-  - Mode-Connectivity: [PyTorch repo](https://github.com/timgaripov/dnn-mode-connectivity). 
-  We use the scripts from this repository to construct our curve subspaces.
-  - Bayesian benchmarks: [Repo](https://github.com/hughsalimbeni/bayesian-benchmarks); the `experiments/uci_exps` folder is a clone of that repo.
-
-Model implementations:
-  - VGG: https://github.com/pytorch/vision/
-  - PreResNet: https://github.com/bearpaw/pytorch-classification
-  - WideResNet: https://github.com/meliketoy/wide-resnet.pytorch
+![Alt text](/blob/main/codes/Visualizing%20posterior%20distribution%20in%20PCA%20subspace/posterior_distributions_subspace.pdf?raw=true "Posterior Distributions")
